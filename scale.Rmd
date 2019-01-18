@@ -1,0 +1,34 @@
+---
+title: "plots"
+author: "Ustinova Eugenia"
+date: "January 17, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Сильная масштабируемость
+
+```{r}
+num_threads <- c(1, 2, 4, 6, 7, 8, 10, 12)
+## time1 <- c(4.134285, 2.197854, 1.120904, 0.768721, 6.737673, 10.923125, 10.840237, 11.066983)
+time <- c(4.287068, 2.136172, 1.100449, 0.768721, 6.737673, 10.924790, 10.604619, 10.982329)
+strong <- data.frame(num_threads, time)
+strong$S <- strong$time[1]/strong$time
+strong
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+library(ggplot2)
+ggplot(data=strong, aes(x=num_threads, y=S, group=1)) +
+  geom_line()+
+  geom_point()
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
